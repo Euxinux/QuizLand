@@ -23,19 +23,17 @@ class Question{
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "question")
     private Set<Option> options;
     private List<Category> category;
-    @Enumerated(EnumType.STRING)
     private Difficulty difficulty;
     private boolean active;
-    @Embedded
     @Getter(AccessLevel.NONE)
     private final Audit audit = new Audit();
 
-    Question (QuestionDTO source){
-        this.questionContent = source.getQuestionContent();
-        this.category = source.getCategory();
+    Question (QuestionDTO questionFromUser){
+        this.questionContent = questionFromUser.getQuestionContent();
+        this.category = questionFromUser.getCategory();
         this.options = new HashSet<>();
-        this.difficulty = source.getDifficulty();
-        this.active = source.isActive();
+        this.difficulty = questionFromUser.getDifficulty();
+        this.active = questionFromUser.isActive();
     }
 
 }

@@ -10,14 +10,17 @@ import java.util.Set;
 @RequiredArgsConstructor
 public class QuestionService{
     private final QuestionRepository repository;
+    private final OptionService optionService;
 
-    Question createQuestion(QuestionDTO source){
-        Question question = new Question(source);
-        Set<Option> questionOptions = question.getOptions();
-        for (Option option : source.getOptions()) {
-            questionOptions.add(new Option(option, question));
-        }
-        return repository.save(question);
+    Question createQuestion(QuestionDTO questionSource){
+        optionService.hasAtLeastOneCorrectAnswer(questionSource.getOptions());
+        Question questionToSave = new Question(questionSource);
+        Set<Option> questionOptions = questionToSave.getOptions();
+        questionSource
+                .getOptions()
+                .forEach(option -> questionOptions.add(new Option(option, questionToSave)));
+
+        return repository.save(questionToSave);
     }
 
     public List<Question> readAllQuestion(){

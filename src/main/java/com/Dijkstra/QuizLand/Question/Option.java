@@ -1,5 +1,6 @@
 package com.Dijkstra.QuizLand.Question;
 
+import com.Dijkstra.QuizLand.Audit;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -21,10 +22,13 @@ public class Option{
     @JsonIgnore
     private Question question;
     private boolean correct;
-    Option(Option source, Question question){
-        this.optionContent = source.getOptionContent();
+    @Enumerated
+    private Audit audit = new Audit();
+
+    Option(Option optionSource, Question question){
+        this.optionContent = optionSource.getOptionContent();
         this.question = question;
-        this.correct = source.isCorrect();
+        this.correct = optionSource.isCorrect();
     }
 
 }

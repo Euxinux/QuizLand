@@ -1,9 +1,11 @@
 package com.Dijkstra.QuizLand.Question;
 
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+
 import java.net.URI;
 import java.util.List;
 
@@ -11,19 +13,19 @@ import java.util.List;
 @RequestMapping("api/v1/questions")
 @RequiredArgsConstructor
 public class QuestionController{
-    private final QuestionService service;
+    private final QuestionService questionService;
 
     @GetMapping
     ResponseEntity<List<Question>> readAllQuestions(){
-        List<Question> questions = service.readAllQuestion();
+        List<Question> questions = questionService.readAllQuestion();
         return ResponseEntity.ok(questions);
     }
 
     @PostMapping
     ResponseEntity<Question> createQuestion(
-            @RequestBody QuestionDTO questionToSave
+            @RequestBody @Valid QuestionDTO questionToSave
     ){
-        Question question = service.createQuestion(questionToSave);
+        Question question = questionService.createQuestion(questionToSave);
         URI location = ServletUriComponentsBuilder
                 .fromCurrentRequest()
                 .path("/{id}")
