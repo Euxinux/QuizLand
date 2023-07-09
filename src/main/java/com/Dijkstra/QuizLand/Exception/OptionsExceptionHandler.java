@@ -19,18 +19,4 @@ public class OptionsExceptionHandler{
         return "At least on option should be true";
     }
 
-    /*
-        Exception returns map of incorrect request question's values.
-     */
-    @ResponseStatus(HttpStatus.BAD_REQUEST)
-    @ExceptionHandler(MethodArgumentNotValidException.class)
-    protected Map<String, String> handleInvalidArgument(MethodArgumentNotValidException ex)
-    {
-        Map<String, String> errors = new HashMap<String, String>();
-        ex.getBindingResult()
-                .getFieldErrors()
-                .forEach(error ->
-                        errors.put(error.getField(),error.getDefaultMessage()));
-        return errors;
-    }
 }
