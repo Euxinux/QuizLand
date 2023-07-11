@@ -26,6 +26,7 @@ class Question{
     private Difficulty difficulty;
     private boolean active;
     @Getter(AccessLevel.NONE)
+    @Embedded
     private final Audit audit = new Audit();
 
     Question (QuestionDTO questionFromUser){
@@ -35,5 +36,6 @@ class Question{
         this.difficulty = questionFromUser.getDifficulty();
         this.active = questionFromUser.isActive();
     }
+    
 
 }

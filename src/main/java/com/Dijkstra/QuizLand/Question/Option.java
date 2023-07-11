@@ -1,8 +1,8 @@
 package com.Dijkstra.QuizLand.Question;
 
 import com.Dijkstra.QuizLand.Audit;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -19,10 +19,10 @@ public class Option{
     private Integer id;
     private String optionContent;
     @ManyToOne
-    @JsonIgnore
     private Question question;
     private boolean correct;
-    @Enumerated
+    @Embedded
+    @Getter(AccessLevel.NONE)
     private Audit audit = new Audit();
 
     Option(Option optionSource, Question question){

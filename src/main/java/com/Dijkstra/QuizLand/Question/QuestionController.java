@@ -16,9 +16,8 @@ public class QuestionController{
     private final QuestionService questionService;
 
     @GetMapping
-    ResponseEntity<List<Question>> readAllQuestions(){
-        List<Question> questions = questionService.readAllQuestion();
-        return ResponseEntity.ok(questions);
+    ResponseEntity<List<QuestionReadDTO>> readAllQuestions(){
+        return ResponseEntity.ok(questionService.readAllQuestion());
     }
 
     @PostMapping

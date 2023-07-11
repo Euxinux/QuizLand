@@ -23,8 +23,9 @@ public class QuestionService{
         return repository.save(questionToSave);
     }
 
-    public List<Question> readAllQuestion(){
-        return repository.findAll();
+    public List<QuestionReadDTO> readAllQuestion(){
+        List<Question> allQuestion = repository.findAll();
+        return allQuestion.stream().map(QuestionReadDTO::new).toList();
     }
 
 }
