@@ -8,8 +8,9 @@ import java.util.List;
 @Service
 public class OptionService{
 
-        void hasAtLeastOneCorrectAnswer(List<Option> options) {
-            if(options.stream().noneMatch(Option::isCorrect))
-                throw new CorrectAnswerNotExistsException("At least on option should be true");
+        void hasOneCorrectAnswer(List<Option> options) {
+            if(options.stream().filter(Option::isCorrect).count() != 1) {
+                throw new CorrectAnswerNotExistsException("One option should be true!");
+            }
         }
 }
