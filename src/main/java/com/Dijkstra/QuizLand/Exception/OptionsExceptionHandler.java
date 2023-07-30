@@ -6,7 +6,6 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
-
 import java.util.HashMap;
 import java.util.Map;
 
@@ -15,8 +14,11 @@ public class OptionsExceptionHandler{
 
     @ResponseStatus(HttpStatus.UNPROCESSABLE_ENTITY)
     @ExceptionHandler(CorrectAnswerNotExistsException.class)
-    protected String handleIncorrectOptions(CorrectAnswerNotExistsException ex){
-        return "At least on option should be true";
+    protected ApiErrorResponse handleIncorrectOptions(CorrectAnswerNotExistsException ex){
+        return new ApiErrorResponse(
+                HttpStatus.UNPROCESSABLE_ENTITY,
+                ex.getMessage()
+        );
     }
 
 }

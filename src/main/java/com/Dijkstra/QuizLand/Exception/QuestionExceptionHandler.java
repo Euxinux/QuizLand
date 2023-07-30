@@ -16,8 +16,7 @@ public class QuestionExceptionHandler{
      */
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(MethodArgumentNotValidException.class)
-    protected Map<String, String> handleInvalidArgument(MethodArgumentNotValidException ex)
-    {
+    protected Map<String, String> handleInvalidArgument(MethodArgumentNotValidException ex){
         Map<String, String> errors = new HashMap<>();
         ex.getBindingResult()
                 .getFieldErrors()
@@ -25,4 +24,14 @@ public class QuestionExceptionHandler{
                         errors.put(error.getField(),error.getDefaultMessage()));
         return errors;
     }
+
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    @ExceptionHandler(QuestionNotFoundException.class)
+    protected ApiErrorResponse handleNotFoundExceptions(RuntimeException ex){
+        return new ApiErrorResponse(
+                HttpStatus.NOT_FOUND,
+                ex.getMessage()
+        );
+    }
+
 }
