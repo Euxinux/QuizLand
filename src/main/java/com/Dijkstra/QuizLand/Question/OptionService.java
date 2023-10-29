@@ -1,6 +1,6 @@
 package com.Dijkstra.QuizLand.Question;
 
-import com.Dijkstra.QuizLand.Exception.CorrectAnswerNotExistsException;
+import com.Dijkstra.QuizLand.Question.Exception.CorrectAnswerNotExistsException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

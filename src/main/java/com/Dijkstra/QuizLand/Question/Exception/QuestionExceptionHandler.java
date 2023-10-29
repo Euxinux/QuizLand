@@ -1,6 +1,8 @@
-package com.Dijkstra.QuizLand.Exception;
+package com.Dijkstra.QuizLand.Question.Exception;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.http.converter.HttpMessageNotReadableException;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -32,6 +34,14 @@ public class QuestionExceptionHandler{
                 HttpStatus.NOT_FOUND,
                 ex.getMessage()
         );
+    }
+
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(HttpMessageNotReadableException.class)
+    protected ApiErrorResponse handle(HttpMessageNotReadableException ex){
+        return new ApiErrorResponse(
+                HttpStatus.NOT_FOUND,
+                ex.getMessage().substring(ex.getMessage().indexOf("from ") + 5));
     }
 
 }

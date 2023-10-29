@@ -1,4 +1,4 @@
-package com.Dijkstra.QuizLand.Exception;
+package com.Dijkstra.QuizLand.Question.Exception;
 /*
    This exception is used when the user doesn't set any option for the question as true.
  */

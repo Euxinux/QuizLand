@@ -1,6 +1,6 @@
 package com.Dijkstra.QuizLand.Question;
 
-import com.Dijkstra.QuizLand.Exception.QuestionNotFoundException;
+import com.Dijkstra.QuizLand.Question.Exception.QuestionNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -36,8 +36,7 @@ public class QuestionService{
     QuestionReadDTO readQuestion(int questionId){
         Optional<Question> questionById = repository.findById(questionId);
         return new QuestionReadDTO(questionById.orElseThrow(() ->
-                new QuestionNotFoundException("Question not found with id: " + questionId)
-        ));
+                new QuestionNotFoundException("Question not found with id: " + questionId)));
     }
 
     void deleteQuestion(int questionId){

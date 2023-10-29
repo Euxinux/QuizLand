@@ -1,4 +1,4 @@
-package com.Dijkstra.QuizLand.Exception;
+package com.Dijkstra.QuizLand.Question.Exception;
 
 import lombok.Getter;
 import lombok.Setter;

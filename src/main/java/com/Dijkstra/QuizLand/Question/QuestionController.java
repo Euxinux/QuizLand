@@ -24,16 +24,12 @@ public class QuestionController{
 
     @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    QuestionReadDTO readQuestion(
-            @PathVariable("id") int questionId
-    ){
+    QuestionReadDTO readQuestion(@PathVariable("id") int questionId){
         return questionService.readQuestion(questionId);
     }
 
     @PostMapping
-    ResponseEntity<?> createQuestion(
-            @RequestBody @Valid QuestionDTO questionToSave
-    ){
+    ResponseEntity<?> createQuestion(@RequestBody @Valid QuestionDTO questionToSave){
         Question questionSaved = questionService.createQuestion(questionToSave);
         URI location = ServletUriComponentsBuilder
                 .fromCurrentRequest()
@@ -44,9 +40,7 @@ public class QuestionController{
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    void deleteQuestion(
-            @PathVariable("id") Integer questionId
-    ){
+    void deleteQuestion(@PathVariable("id") Integer questionId){
         questionService.deleteQuestion(questionId);
     }
 }

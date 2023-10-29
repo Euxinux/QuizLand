@@ -11,5 +11,6 @@ public enum Category{
     BOOKS,
     POLITICS,
     ART,
-    COUNTRIES,
+    COUNTRIES;
+
 }
