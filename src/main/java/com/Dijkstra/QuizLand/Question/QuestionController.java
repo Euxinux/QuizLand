@@ -40,7 +40,13 @@ public class QuestionController{
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    void deleteQuestion(@PathVariable("id") Integer questionId){
+    void deleteQuestion(@PathVariable("id") int questionId){
         questionService.deleteQuestion(questionId);
+    }
+
+    @PatchMapping("/active/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    void toggleActive(@PathVariable("id") int questionId){
+        questionService.toggleActive(questionId);
     }
 }

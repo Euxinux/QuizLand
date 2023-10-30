@@ -40,9 +40,20 @@ public class QuestionService{
     }
 
     void deleteQuestion(int questionId){
-        if (repository.findById(questionId).isPresent())
-            repository.deleteById(questionId);
-        else
-            throw new QuestionNotFoundException("Question not found with id: " + questionId);
+        isQuestionExists(questionId);
+        repository.deleteById(questionId);
     }
+
+    void toggleActive(int questionId){
+        Question questionToToggle = isQuestionExists(questionId);
+        questionToToggle.setActive(!questionToToggle.isActive());
+        repository.save(questionToToggle);
+    }
+
+    private Question isQuestionExists(int questionId){
+         return repository.findById(questionId)
+                .orElseThrow(()->new QuestionNotFoundException("Question not found with id: " + questionId));
+    }
+
+
 }
