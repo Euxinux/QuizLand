@@ -38,10 +38,10 @@ public class QuestionExceptionHandler{
 
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(HttpMessageNotReadableException.class)
-    protected ApiErrorResponse handle(HttpMessageNotReadableException ex){
+    protected ApiErrorResponse handleNotReadableException(HttpMessageNotReadableException ex){
+        String exceptionMessage = ex.getMessage();
         return new ApiErrorResponse(
-                HttpStatus.NOT_FOUND,
-                ex.getMessage().substring(ex.getMessage().indexOf("from ") + 5));
+                HttpStatus.BAD_REQUEST,
+                exceptionMessage);
     }
-
 }

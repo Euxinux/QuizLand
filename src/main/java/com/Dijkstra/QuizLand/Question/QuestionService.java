@@ -50,10 +50,15 @@ public class QuestionService{
         repository.save(questionToToggle);
     }
 
+    void updateQuestionContent(String newQuestionContent, int questionId){
+        isQuestionExists(questionId);
+        repository.findById(questionId);
+        System.out.println(newQuestionContent);
+        repository.updateQuestionContent(newQuestionContent,questionId);
+    }
+
     private Question isQuestionExists(int questionId){
          return repository.findById(questionId)
                 .orElseThrow(()->new QuestionNotFoundException("Question not found with id: " + questionId));
     }
-
-
 }

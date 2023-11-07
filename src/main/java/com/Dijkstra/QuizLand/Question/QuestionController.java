@@ -1,6 +1,7 @@
 package com.Dijkstra.QuizLand.Question;
 
 import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotEmpty;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -44,9 +45,15 @@ public class QuestionController{
         questionService.deleteQuestion(questionId);
     }
 
-    @PatchMapping("/active/{id}")
+    @PatchMapping("/update/active/{id}")
     @ResponseStatus(HttpStatus.OK)
     void toggleActive(@PathVariable("id") int questionId){
         questionService.toggleActive(questionId);
+    }
+
+    @PatchMapping("/update/content/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    void updateQuestionContent(@PathVariable("id") int questionId, @RequestBody String newQuestionContent){
+        questionService.updateQuestionContent(newQuestionContent, questionId);
     }
 }
