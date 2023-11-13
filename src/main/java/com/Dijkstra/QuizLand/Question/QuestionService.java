@@ -1,6 +1,8 @@
 package com.Dijkstra.QuizLand.Question;
 
 import com.Dijkstra.QuizLand.Question.Exception.QuestionNotFoundException;
+import com.Dijkstra.QuizLand.Question.Option.Option;
+import com.Dijkstra.QuizLand.Question.Option.OptionService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -14,7 +16,7 @@ public class QuestionService{
     private final QuestionRepository repository;
     private final OptionService optionService;
 
-    Question createQuestion(QuestionDTO questionSource){
+    Question createQuestion(QuestionCreateDTO questionSource){
         optionService.hasOneCorrectAnswer(questionSource.getOptions());
         Question questionToSave = new Question(questionSource);
         Set<Option> questionOptions = questionToSave.getOptions();
@@ -57,8 +59,14 @@ public class QuestionService{
         repository.updateQuestionContent(newQuestionContent,questionId);
     }
 
+
+    public void changeCorrectAnswer(int questionId, int optionId){
+
+    }
+
     private Question isQuestionExists(int questionId){
          return repository.findById(questionId)
                 .orElseThrow(()->new QuestionNotFoundException("Question not found with id: " + questionId));
     }
+
 }

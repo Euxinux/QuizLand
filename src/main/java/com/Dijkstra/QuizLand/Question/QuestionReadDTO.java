@@ -2,6 +2,7 @@ package com.Dijkstra.QuizLand.Question;
 
 import com.Dijkstra.QuizLand.Question.Enum.Category;
 import com.Dijkstra.QuizLand.Question.Enum.Difficulty;
+import com.Dijkstra.QuizLand.Question.Option.Option;
 import lombok.Getter;
 import java.util.List;
 import java.util.Set;

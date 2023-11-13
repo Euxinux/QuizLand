@@ -1,6 +1,7 @@
-package com.Dijkstra.QuizLand.Question;
+package com.Dijkstra.QuizLand.Question.Option;
 
 import com.Dijkstra.QuizLand.Audit;
+import com.Dijkstra.QuizLand.Question.Question;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -25,7 +26,7 @@ public class Option{
     @Getter(AccessLevel.NONE)
     private Audit audit = new Audit();
 
-    Option(Option optionSource, Question question){
+     public Option(Option optionSource, Question question){
         this.optionContent = optionSource.getOptionContent();
         this.question = question;
         this.correct = optionSource.isCorrect();

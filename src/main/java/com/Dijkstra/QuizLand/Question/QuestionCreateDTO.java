@@ -2,6 +2,7 @@ package com.Dijkstra.QuizLand.Question;
 
 import com.Dijkstra.QuizLand.Question.Enum.Category;
 import com.Dijkstra.QuizLand.Question.Enum.Difficulty;
+import com.Dijkstra.QuizLand.Question.Option.Option;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.validation.constraints.NotEmpty;
@@ -16,7 +17,7 @@ import java.util.List;
 @Getter
 @Setter
 @AllArgsConstructor
-class QuestionDTO{
+class QuestionCreateDTO{
     @NotEmpty(message = "Question content cannot be empty!")
     private String questionContent;
     @Size(min = 2, max = 6, message = "Correct question should has at least 2 options, but max 6!")

@@ -1,7 +1,6 @@
 package com.Dijkstra.QuizLand.Question;
 
 import jakarta.validation.Valid;
-import jakarta.validation.constraints.NotEmpty;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -30,7 +29,7 @@ public class QuestionController{
     }
 
     @PostMapping
-    ResponseEntity<?> createQuestion(@RequestBody @Valid QuestionDTO questionToSave){
+    ResponseEntity<?> createQuestion(@RequestBody @Valid QuestionCreateDTO questionToSave){
         Question questionSaved = questionService.createQuestion(questionToSave);
         URI location = ServletUriComponentsBuilder
                 .fromCurrentRequest()
@@ -55,5 +54,12 @@ public class QuestionController{
     @ResponseStatus(HttpStatus.OK)
     void updateQuestionContent(@PathVariable("id") int questionId, @RequestBody String newQuestionContent){
         questionService.updateQuestionContent(newQuestionContent, questionId);
+    }
+
+    @PatchMapping("update/{questionId}/option/{optionId}")
+    @ResponseStatus(HttpStatus.OK)
+    void changeCorrectAnswer(@PathVariable("questionId") int questionId,
+                             @PathVariable("optionId") int optionId){
+        questionService.changeCorrectAnswer(questionId, optionId);
     }
 }

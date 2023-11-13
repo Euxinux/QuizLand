@@ -3,6 +3,7 @@ package com.Dijkstra.QuizLand.Question;
 import com.Dijkstra.QuizLand.Audit;
 import com.Dijkstra.QuizLand.Question.Enum.Category;
 import com.Dijkstra.QuizLand.Question.Enum.Difficulty;
+import com.Dijkstra.QuizLand.Question.Option.Option;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -15,7 +16,7 @@ import java.util.Set;
 @Getter
 @Setter
 @NoArgsConstructor
-class Question{
+public class Question{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -29,7 +30,7 @@ class Question{
     @Embedded
     private final Audit audit = new Audit();
 
-    Question (QuestionDTO questionFromUser){
+    Question (QuestionCreateDTO questionFromUser){
         this.questionContent = questionFromUser.getQuestionContent();
         this.category = questionFromUser.getCategory();
         this.options = new HashSet<>();
