@@ -50,16 +50,11 @@ public class QuestionController{
         questionService.toggleActive(questionId);
     }
 
-    @PatchMapping("/update/content/{id}")
+    @PatchMapping("/update/{id}")
     @ResponseStatus(HttpStatus.OK)
-    void updateQuestionContent(@PathVariable("id") int questionId, @RequestBody String newQuestionContent){
-        questionService.updateQuestionContent(newQuestionContent, questionId);
+    void updateQuestionContent(@PathVariable("id") int questionId, @RequestBody @Valid QuestionUpdateDTO questionToUpdate){
+        questionService.updateQuestion(questionId, questionToUpdate);
     }
 
-    @PatchMapping("update/{questionId}/option/{optionId}")
-    @ResponseStatus(HttpStatus.OK)
-    void changeCorrectAnswer(@PathVariable("questionId") int questionId,
-                             @PathVariable("optionId") int optionId){
-        questionService.changeCorrectAnswer(questionId, optionId);
-    }
+
 }

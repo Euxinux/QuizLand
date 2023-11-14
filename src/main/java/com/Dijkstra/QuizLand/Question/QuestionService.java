@@ -3,6 +3,7 @@ package com.Dijkstra.QuizLand.Question;
 import com.Dijkstra.QuizLand.Question.Exception.QuestionNotFoundException;
 import com.Dijkstra.QuizLand.Question.Option.Option;
 import com.Dijkstra.QuizLand.Question.Option.OptionService;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +16,7 @@ import java.util.Set;
 public class QuestionService{
     private final QuestionRepository repository;
     private final OptionService optionService;
+    private final QuestionModelMapper modelMapper;
 
     Question createQuestion(QuestionCreateDTO questionSource){
         optionService.hasOneCorrectAnswer(questionSource.getOptions());
@@ -52,17 +54,12 @@ public class QuestionService{
         repository.save(questionToToggle);
     }
 
-    void updateQuestionContent(String newQuestionContent, int questionId){
-        isQuestionExists(questionId);
-        repository.findById(questionId);
-        System.out.println(newQuestionContent);
-        repository.updateQuestionContent(newQuestionContent,questionId);
+    @Transactional
+    void updateQuestion(int questionId, QuestionUpdateDTO questionToUpdate){
+        Question currentQuestion = isQuestionExists(questionId);
+        modelMapper.questionUpdateDTOToQuestion(currentQuestion, questionToUpdate);
     }
 
-
-    public void changeCorrectAnswer(int questionId, int optionId){
-
-    }
 
     private Question isQuestionExists(int questionId){
          return repository.findById(questionId)
