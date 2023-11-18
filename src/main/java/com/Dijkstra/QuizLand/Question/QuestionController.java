@@ -1,5 +1,6 @@
 package com.Dijkstra.QuizLand.Question;
 
+import com.Dijkstra.QuizLand.Question.Option.OptionService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -52,8 +53,15 @@ public class QuestionController{
 
     @PatchMapping("/update/{id}")
     @ResponseStatus(HttpStatus.OK)
-    void updateQuestionContent(@PathVariable("id") int questionId, @RequestBody @Valid QuestionUpdateDTO questionToUpdate){
+    void updateQuestionContent(@PathVariable("id") int questionId,
+                               @RequestBody @Valid QuestionUpdateDTO questionToUpdate){
         questionService.updateQuestion(questionId, questionToUpdate);
+    }
+
+    @GetMapping("/{id}/options")
+    @ResponseStatus(HttpStatus.OK)
+    List<String> getQuestionOptions(@PathVariable("id") int questionId){
+        return questionService.getQuestionOptions(questionId);
     }
 
 

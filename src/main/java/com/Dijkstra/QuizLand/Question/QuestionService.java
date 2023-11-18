@@ -60,10 +60,16 @@ public class QuestionService{
         modelMapper.questionUpdateDTOToQuestion(currentQuestion, questionToUpdate);
     }
 
+    public List<String> getQuestionOptions(int questionId){
+        Question questionExists = isQuestionExists(questionId);
+        return optionService.getAllOptions(questionExists.getOptions());
+    }
+
 
     private Question isQuestionExists(int questionId){
          return repository.findById(questionId)
                 .orElseThrow(()->new QuestionNotFoundException("Question not found with id: " + questionId));
     }
+
 
 }
