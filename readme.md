@@ -1,4 +1,4 @@
-![BANNER](../../../../resources/static/QuizLandBanner.png)
+![BANNER](src/main/resources/static/QuizLandBanner.png)
 
 <div id="badges">
   <a href="https://www.linkedin.com/in/daniel-besztak/">
