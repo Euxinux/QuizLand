@@ -56,13 +56,19 @@ public class QuestionService{
 
     @Transactional
     void updateQuestion(int questionId, QuestionUpdateDTO questionToUpdate){
-        Question currentQuestion = isQuestionExists(questionId);
-        modelMapper.questionUpdateDTOToQuestion(currentQuestion, questionToUpdate);
+        Question questionFromDb = isQuestionExists(questionId);
+        modelMapper.questionUpdateDTOToQuestion(questionFromDb, questionToUpdate);
     }
 
-    public List<String> getQuestionOptions(int questionId){
-        Question questionExists = isQuestionExists(questionId);
-        return optionService.getAllOptions(questionExists.getOptions());
+     List<String> getQuestionOptions(int questionId){
+        Question questionFromDb = isQuestionExists(questionId);
+        return optionService.getAllOptions(questionFromDb.getOptions());
+    }
+
+    @Transactional
+    void updateQuestionOption(int questionId, int optionId, String newOptionContent){
+        Question questionFromDb = isQuestionExists(questionId);
+        optionService.updateQuestionOption(questionFromDb.getOptions(), optionId, newOptionContent);
     }
 
 

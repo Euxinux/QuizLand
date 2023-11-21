@@ -64,5 +64,13 @@ public class QuestionController{
         return questionService.getQuestionOptions(questionId);
     }
 
+    @PatchMapping("{id}/options/{optionId}")
+    @ResponseStatus(HttpStatus.OK)
+    void updateQuestionOption(@PathVariable("id") int questionId,
+                              @PathVariable("optionId") int optionId,
+                              @RequestBody String newOptionContent){
+        questionService.updateQuestionOption(questionId, optionId, newOptionContent);
+    }
+
 
 }

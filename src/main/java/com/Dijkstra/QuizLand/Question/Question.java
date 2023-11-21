@@ -4,6 +4,7 @@ import com.Dijkstra.QuizLand.Audit;
 import com.Dijkstra.QuizLand.Question.Enum.Category;
 import com.Dijkstra.QuizLand.Question.Enum.Difficulty;
 import com.Dijkstra.QuizLand.Question.Option.Option;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -16,7 +17,6 @@ import java.util.Set;
 @Getter
 @Setter
 @NoArgsConstructor
-@ToString
 public class Question{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

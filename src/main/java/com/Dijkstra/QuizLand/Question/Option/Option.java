@@ -3,10 +3,7 @@ package com.Dijkstra.QuizLand.Question.Option;
 import com.Dijkstra.QuizLand.Audit;
 import com.Dijkstra.QuizLand.Question.Question;
 import jakarta.persistence.*;
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 
 @Entity
@@ -14,6 +11,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
+@ToString
 public class Option{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

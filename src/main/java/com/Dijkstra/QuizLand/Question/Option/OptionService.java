@@ -1,13 +1,13 @@
 package com.Dijkstra.QuizLand.Question.Option;
 
 import com.Dijkstra.QuizLand.Question.Exception.CorrectAnswerNotExistsException;
-import com.Dijkstra.QuizLand.Question.Question;
+import com.Dijkstra.QuizLand.Question.Exception.OptionNotFoundException;
+import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 @Service
 public class OptionService{
@@ -23,5 +23,19 @@ public class OptionService{
                 .stream()
                 .map(Option::getOptionContent)
                 .toList();
+    }
+
+    @Transactional
+    public void updateQuestionOption(Set<Option> options, int optionId, String newOptionContent){
+        Optional<Option> optionToUpdate = options
+                .stream()
+                .filter(option -> option.getId() == optionId)
+                .findFirst();
+
+        if(optionToUpdate.isPresent())
+            optionToUpdate.get().setOptionContent(newOptionContent);
+        else
+            throw new OptionNotFoundException("Option not found with id: " + optionId);
+
     }
 }
