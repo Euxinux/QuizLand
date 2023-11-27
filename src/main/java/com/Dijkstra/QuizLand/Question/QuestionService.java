@@ -71,11 +71,24 @@ public class QuestionService{
         optionService.updateQuestionOption(questionFromDb.getOptions(), optionId, newOptionContent);
     }
 
+    void changeCorrectAnswer(int questionId, int optionId){
+        Question questionFromDb = isQuestionExists(questionId);
+        optionService.changeCorrectAnswer(questionFromDb.getOptions(), optionId);
+    }
+
+    String getCorrectAnswer(int questionId){
+        Question questionFromDb = isQuestionExists(questionId);
+        return questionFromDb
+                .getOptions()
+                .stream()
+                .filter(Option::isCorrect)
+                .findFirst()
+                .get()
+                .getOptionContent();
+    }
 
     private Question isQuestionExists(int questionId){
          return repository.findById(questionId)
                 .orElseThrow(()->new QuestionNotFoundException("Question not found with id: " + questionId));
     }
-
-
 }

@@ -17,4 +17,13 @@ public class OptionsExceptionHandler{
         );
     }
 
+    @ResponseStatus(HttpStatus.UNPROCESSABLE_ENTITY)
+    @ExceptionHandler(OptionNotFoundException.class)
+    protected ApiErrorResponse handleOptionNotFoundException(OptionNotFoundException ex){
+        return new ApiErrorResponse(
+                HttpStatus.UNPROCESSABLE_ENTITY,
+                ex.getMessage()
+        );
+    }
+
 }

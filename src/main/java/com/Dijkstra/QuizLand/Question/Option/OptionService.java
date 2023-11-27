@@ -27,15 +27,29 @@ public class OptionService{
 
     @Transactional
     public void updateQuestionOption(Set<Option> options, int optionId, String newOptionContent){
+        Option optionToUpdate = getOption(options, optionId);
+        optionToUpdate.setOptionContent(newOptionContent);
+    }
+
+    @Transactional
+    public void changeCorrectAnswer(Set<Option> options, int optionId){
+        Option optionToUpdate = getOption(options, optionId);
+        optionToUpdate.setCorrect(true);
+
+        for(Option option : options){
+            if(option.getId() != optionId)
+                option.setCorrect(true);
+        }
+    }
+
+    private Option getOption(Set<Option> options, int optionId){
         Optional<Option> optionToUpdate = options
                 .stream()
                 .filter(option -> option.getId() == optionId)
                 .findFirst();
-
-        if(optionToUpdate.isPresent())
-            optionToUpdate.get().setOptionContent(newOptionContent);
-        else
+        if(optionToUpdate.isEmpty())
             throw new OptionNotFoundException("Option not found with id: " + optionId);
-
+        else
+            return optionToUpdate.get();
     }
 }

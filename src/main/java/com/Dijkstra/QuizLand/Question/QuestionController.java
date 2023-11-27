@@ -1,6 +1,5 @@
 package com.Dijkstra.QuizLand.Question;
 
-import com.Dijkstra.QuizLand.Question.Option.OptionService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -70,6 +69,19 @@ public class QuestionController{
                               @PathVariable("optionId") int optionId,
                               @RequestBody String newOptionContent){
         questionService.updateQuestionOption(questionId, optionId, newOptionContent);
+    }
+
+    @PatchMapping("{id}/options/correct/{optionId}")
+    @ResponseStatus(HttpStatus.OK)
+    void changeCorrectQuestionAnswer(@PathVariable("id") int questionId,
+                                     @PathVariable("optionId") int optionId){
+        questionService.changeCorrectAnswer(questionId, optionId);
+    }
+
+    @GetMapping("{id}/options/correct")
+    @ResponseStatus(HttpStatus.OK)
+    String getCorrectAnswer(@PathVariable("id") int questionId){
+        return questionService.getCorrectAnswer(questionId);
     }
 
 
