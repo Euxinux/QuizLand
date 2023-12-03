@@ -5,7 +5,6 @@ import com.Dijkstra.QuizLand.Question.Question;
 import jakarta.persistence.*;
 import lombok.*;
 
-
 @Entity
 @Table(name = "options")
 @Getter

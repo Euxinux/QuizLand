@@ -14,6 +14,4 @@ interface QuestionRepository extends JpaRepository<Question,Integer>{
     @Query(value = "UPDATE questions SET question_content = ?1 WHERE id = ?2",
             nativeQuery = true)
     void updateQuestionContent(String newQuestionContent, Integer questionId);
-
-
 }

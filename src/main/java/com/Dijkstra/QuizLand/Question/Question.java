@@ -38,6 +38,4 @@ public class Question{
         this.difficulty = questionFromUser.getDifficulty();
         this.active = questionFromUser.isActive();
     }
-    
-
 }

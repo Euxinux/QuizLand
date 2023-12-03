@@ -22,12 +22,6 @@ public class QuestionController{
         return questionService.readAllQuestion();
     }
 
-    @GetMapping("/{id}")
-    @ResponseStatus(HttpStatus.OK)
-    QuestionReadDTO readQuestion(@PathVariable("id") int questionId){
-        return questionService.readQuestion(questionId);
-    }
-
     @PostMapping
     ResponseEntity<?> createQuestion(@RequestBody @Valid QuestionCreateDTO questionToSave){
         Question questionSaved = questionService.createQuestion(questionToSave);
@@ -38,16 +32,16 @@ public class QuestionController{
         return ResponseEntity.created(location).build();
     }
 
+    @GetMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    QuestionReadDTO readQuestion(@PathVariable("id") int questionId){
+        return questionService.readQuestion(questionId);
+    }
+
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     void deleteQuestion(@PathVariable("id") int questionId){
         questionService.deleteQuestion(questionId);
-    }
-
-    @PatchMapping("/update/active/{id}")
-    @ResponseStatus(HttpStatus.OK)
-    void toggleActive(@PathVariable("id") int questionId){
-        questionService.toggleActive(questionId);
     }
 
     @PatchMapping("/update/{id}")
@@ -55,6 +49,12 @@ public class QuestionController{
     void updateQuestionContent(@PathVariable("id") int questionId,
                                @RequestBody @Valid QuestionUpdateDTO questionToUpdate){
         questionService.updateQuestion(questionId, questionToUpdate);
+    }
+
+    @PatchMapping("/update/active/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    void toggleActive(@PathVariable("id") int questionId){
+        questionService.toggleActive(questionId);
     }
 
     @GetMapping("/{id}/options")
@@ -71,6 +71,13 @@ public class QuestionController{
         questionService.updateQuestionOption(questionId, optionId, newOptionContent);
     }
 
+    @GetMapping("{id}/options/correct")
+    @ResponseStatus(HttpStatus.OK)
+    String getCorrectAnswer(@PathVariable("id") int questionId){
+        return questionService.getCorrectAnswer(questionId);
+    }
+
+
     @PatchMapping("{id}/options/correct/{optionId}")
     @ResponseStatus(HttpStatus.OK)
     void changeCorrectQuestionAnswer(@PathVariable("id") int questionId,
@@ -78,11 +85,6 @@ public class QuestionController{
         questionService.changeCorrectAnswer(questionId, optionId);
     }
 
-    @GetMapping("{id}/options/correct")
-    @ResponseStatus(HttpStatus.OK)
-    String getCorrectAnswer(@PathVariable("id") int questionId){
-        return questionService.getCorrectAnswer(questionId);
-    }
 
 
 }

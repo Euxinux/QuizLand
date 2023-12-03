@@ -12,5 +12,4 @@ public enum Category{
     POLITICS,
     ART,
     COUNTRIES;
-
 }
