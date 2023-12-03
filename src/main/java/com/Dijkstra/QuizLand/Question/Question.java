@@ -4,9 +4,11 @@ import com.Dijkstra.QuizLand.Audit;
 import com.Dijkstra.QuizLand.Question.Enum.Category;
 import com.Dijkstra.QuizLand.Question.Enum.Difficulty;
 import com.Dijkstra.QuizLand.Question.Option.Option;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.AccessLevel;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.util.HashSet;
 import java.util.List;

@@ -5,6 +5,10 @@ import lombok.Setter;
 import org.springframework.http.HttpStatus;
 import java.time.LocalDateTime;
 
+/*
+    Class allows to create error response status.
+ */
+
 @Setter
 @Getter
 class ApiErrorResponse{

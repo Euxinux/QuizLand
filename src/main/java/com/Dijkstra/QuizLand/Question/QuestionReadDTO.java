@@ -8,6 +8,10 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+/*
+    DTO used for the displaying particular field of entity for the user.
+ */
+
 @Getter
 public class QuestionReadDTO{
     private final int id;
