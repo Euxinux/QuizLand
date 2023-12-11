@@ -1,19 +1,15 @@
 package com.Dijkstra.QuizLand.Question;
 
 import com.Dijkstra.QuizLand.Question.Option.Option;
-import jakarta.validation.constraints.AssertTrue;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.jdbc.EmbeddedDatabaseConnection;
-import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
-import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.Optional;
 import java.util.Set;
 
-@DataJpaTest
-@AutoConfigureTestDatabase(connection = EmbeddedDatabaseConnection.H2)
+@SpringBootTest
 class QuestionRepositoryTest{
 
     private final QuestionRepository repository;
@@ -24,18 +20,24 @@ class QuestionRepositoryTest{
     }
 
     @Test
-    public void updateQuestionOption_optionUpdated_OptionHasBeenChanged(){
+    public void updateQuestionContent_correctUpdate_NoErrors(){
         //given
         Question oldQuestion = new Question();
         oldQuestion.setOptions(Set.of(
-                new Option("Option 1", false),
-                new Option("Option 2", true)));
+                new Option(),
+                new Option()));
+        String newQuestionContent = "New question content";
 
         //when
         Question savedQuestion = repository.save(oldQuestion);
-        Optional<Question> byId = repository.findById(1);
+        repository.updateQuestionContent(newQuestionContent, savedQuestion.getId());
+        Optional<Question> newQuestion = repository.findById(savedQuestion.getId());
 
         //then
-        Assertions.assertTrue(byId.isPresent());
+        Assertions.assertEquals(newQuestionContent, newQuestion.get().getQuestionContent());
     }
+
+
+
+
 }
