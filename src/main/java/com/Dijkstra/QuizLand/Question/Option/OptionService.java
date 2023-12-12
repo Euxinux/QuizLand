@@ -12,11 +12,11 @@ import java.util.Set;
 @Service
 public class OptionService{
 
-        public void hasOneCorrectAnswer(List<Option> options) {
-            if(options.stream().filter(Option::isCorrect).count() != 1) {
-                throw new CorrectAnswerNotExistsException("One option should be true!");
-            }
+    public void hasOneCorrectAnswer(List<Option> options) {
+       if(options.stream().filter(Option::isCorrect).count() != 1) {
+            throw new CorrectAnswerNotExistsException("One option should be true!");
         }
+    }
 
     public List<String> getAllOptions(Set<Option> questionExists){
         return questionExists
