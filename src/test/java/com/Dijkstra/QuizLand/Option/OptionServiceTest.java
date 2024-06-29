@@ -1,7 +1,9 @@
-package com.Dijkstra.QuizLand.Question.Option;
+package com.Dijkstra.QuizLand.Option;
 
-import com.Dijkstra.QuizLand.Question.Exception.CorrectAnswerNotExistsException;
-import com.Dijkstra.QuizLand.Question.Exception.OptionNotFoundException;
+import com.Dijkstra.QuizLand.Exception.CorrectAnswerNotExistsException;
+import com.Dijkstra.QuizLand.Exception.OptionNotFoundException;
+import com.Dijkstra.QuizLand.Model.Option;
+import com.Dijkstra.QuizLand.Service.OptionService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;

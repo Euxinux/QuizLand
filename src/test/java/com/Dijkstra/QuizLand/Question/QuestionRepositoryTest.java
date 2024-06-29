@@ -1,6 +1,7 @@
 package com.Dijkstra.QuizLand.Question;
 
-import com.Dijkstra.QuizLand.Question.Option.Option;
+import com.Dijkstra.QuizLand.Question.Model.Option;
+import com.Dijkstra.QuizLand.Question.Model.Question;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

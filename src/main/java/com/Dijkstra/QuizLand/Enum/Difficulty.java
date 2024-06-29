@@ -1,4 +1,4 @@
-package com.Dijkstra.QuizLand.Question.Enum;
+package com.Dijkstra.QuizLand.Enum;
 
 public enum Difficulty{
     NORMAL,
