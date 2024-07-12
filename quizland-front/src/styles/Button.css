@@ -1,0 +1,25 @@
+:root{
+    --primary: #1888ff;
+}
+
+.sign-up-button {
+    padding: 8px 8px;
+    border-radius: 4px;
+    outline: 0vb;
+    border: none;
+    min-width: 100px;
+    margin: 5px;
+    font-size: 18px;
+    color: white;
+    cursor: pointer;
+    background-color: var(--primary);
+}
+
+.sign-up-button:hover{
+    padding: 6px 18px;
+    transition: all 0.3s ease-out;
+    background-color: transparent;
+    color: white;
+    border-radius: 4px;
+    border: 2px solid var(--primary)
+}
