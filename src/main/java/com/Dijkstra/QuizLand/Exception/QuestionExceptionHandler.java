@@ -1,4 +1,4 @@
-package com.Dijkstra.QuizLand.Question.Exception;
+package com.Dijkstra.QuizLand.Exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.converter.HttpMessageNotReadableException;

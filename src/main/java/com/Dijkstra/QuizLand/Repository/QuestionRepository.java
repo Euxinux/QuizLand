@@ -1,5 +1,6 @@
-package com.Dijkstra.QuizLand.Question;
+package com.Dijkstra.QuizLand.Repository;
 
+import com.Dijkstra.QuizLand.Model.Question;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -7,7 +8,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 @Repository
-interface QuestionRepository extends JpaRepository<Question,Integer>{
+public interface QuestionRepository extends JpaRepository<Question,Integer>{
 
     @Transactional
     @Modifying

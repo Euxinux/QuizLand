@@ -1,8 +1,13 @@
-package com.Dijkstra.QuizLand.Question;
+package com.Dijkstra.QuizLand.Service;
 
-import com.Dijkstra.QuizLand.Question.Exception.QuestionNotFoundException;
-import com.Dijkstra.QuizLand.Question.Option.Option;
-import com.Dijkstra.QuizLand.Question.Option.OptionService;
+import com.Dijkstra.QuizLand.Component.QuestionModelMapper;
+import com.Dijkstra.QuizLand.DTO.QuestionCreateDTO;
+import com.Dijkstra.QuizLand.DTO.QuestionReadDTO;
+import com.Dijkstra.QuizLand.DTO.QuestionUpdateDTO;
+import com.Dijkstra.QuizLand.Exception.QuestionNotFoundException;
+import com.Dijkstra.QuizLand.Model.Option;
+import com.Dijkstra.QuizLand.Model.Question;
+import com.Dijkstra.QuizLand.Repository.QuestionRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -18,7 +23,7 @@ public class QuestionService{
     private final OptionService optionService;
     private final QuestionModelMapper modelMapper;
 
-    Question createQuestion(QuestionCreateDTO questionSource){
+    public Question createQuestion(QuestionCreateDTO questionSource){
         optionService.hasOneCorrectAnswer(questionSource.getOptions());
         Question questionToSave = new Question(questionSource);
         Set<Option> questionOptions = questionToSave.getOptions();
@@ -29,7 +34,7 @@ public class QuestionService{
         return repository.save(questionToSave);
     }
 
-    List<QuestionReadDTO> readAllQuestion(){
+    public List<QuestionReadDTO> readAllQuestion(){
         List<Question> allQuestion = repository.findAll();
         return allQuestion
                 .stream()
@@ -37,46 +42,46 @@ public class QuestionService{
                 .toList();
     }
 
-    QuestionReadDTO readQuestion(int questionId){
+    public QuestionReadDTO readQuestion(int questionId){
         Optional<Question> questionById = repository.findById(questionId);
         return new QuestionReadDTO(questionById.orElseThrow(() ->
                 new QuestionNotFoundException("Question not found with id: " + questionId)));
     }
 
-    void deleteQuestion(int questionId){
+    public void deleteQuestion(int questionId){
         isQuestionExists(questionId);
         repository.deleteById(questionId);
     }
 
-    void toggleActive(int questionId){
+    public void toggleActive(int questionId){
         Question questionToToggle = isQuestionExists(questionId);
         questionToToggle.setActive(!questionToToggle.isActive());
         repository.save(questionToToggle);
     }
 
     @Transactional
-    void updateQuestion(int questionId, QuestionUpdateDTO questionToUpdate){
+    public void updateQuestion(int questionId, QuestionUpdateDTO questionToUpdate){
         Question questionFromDb = isQuestionExists(questionId);
         modelMapper.questionUpdateDTOToQuestion(questionFromDb, questionToUpdate);
     }
 
-     List<String> getQuestionOptions(int questionId){
+     public List<String> getQuestionOptions(int questionId){
         Question questionFromDb = isQuestionExists(questionId);
         return optionService.getAllOptions(questionFromDb.getOptions());
     }
 
     @Transactional
-    void updateQuestionOption(int questionId, int optionId, String newOptionContent){
+    public void updateQuestionOption(int questionId, int optionId, String newOptionContent){
         Question questionFromDb = isQuestionExists(questionId);
         optionService.updateQuestionOption(questionFromDb.getOptions(), optionId, newOptionContent);
     }
 
-    void changeCorrectAnswer(int questionId, int optionId){
+    public void changeCorrectAnswer(int questionId, int optionId){
         Question questionFromDb = isQuestionExists(questionId);
         optionService.changeCorrectAnswer(questionFromDb.getOptions(), optionId);
     }
 
-    String getCorrectAnswer(int questionId){
+    public String getCorrectAnswer(int questionId){
         Question questionFromDb = isQuestionExists(questionId);
         return questionFromDb
                 .getOptions()

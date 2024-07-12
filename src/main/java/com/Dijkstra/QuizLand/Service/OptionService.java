@@ -1,7 +1,8 @@
-package com.Dijkstra.QuizLand.Question.Option;
+package com.Dijkstra.QuizLand.Service;
 
-import com.Dijkstra.QuizLand.Question.Exception.CorrectAnswerNotExistsException;
-import com.Dijkstra.QuizLand.Question.Exception.OptionNotFoundException;
+import com.Dijkstra.QuizLand.Exception.CorrectAnswerNotExistsException;
+import com.Dijkstra.QuizLand.Exception.OptionNotFoundException;
+import com.Dijkstra.QuizLand.Model.Option;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 

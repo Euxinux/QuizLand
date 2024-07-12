@@ -1,4 +1,4 @@
-package com.Dijkstra.QuizLand;
+package com.Dijkstra.QuizLand.Component;
 
 import jakarta.persistence.Embeddable;
 import jakarta.persistence.PrePersist;

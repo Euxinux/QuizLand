@@ -1,8 +1,8 @@
-package com.Dijkstra.QuizLand.Question;
+package com.Dijkstra.QuizLand.DTO;
 
-import com.Dijkstra.QuizLand.Question.Enum.Category;
-import com.Dijkstra.QuizLand.Question.Enum.Difficulty;
-import com.Dijkstra.QuizLand.Question.Option.Option;
+import com.Dijkstra.QuizLand.Enum.Category;
+import com.Dijkstra.QuizLand.Enum.Difficulty;
+import com.Dijkstra.QuizLand.Model.Option;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.validation.constraints.NotEmpty;
@@ -17,7 +17,7 @@ import java.util.List;
 @Getter
 @Setter
 @AllArgsConstructor
-class QuestionCreateDTO{
+public class QuestionCreateDTO{
     @NotEmpty(message = "Question content cannot be empty!")
     private String questionContent;
     @Size(min = 2, max = 6, message = "Correct question should has at least 2 options, but max 6!")
