@@ -1,8 +1,9 @@
-package com.Dijkstra.QuizLand.Question;
+package com.Dijkstra.QuizLand.DTO;
 
-import com.Dijkstra.QuizLand.Question.Enum.Category;
-import com.Dijkstra.QuizLand.Question.Enum.Difficulty;
-import com.Dijkstra.QuizLand.Question.Option.Option;
+import com.Dijkstra.QuizLand.Enum.Category;
+import com.Dijkstra.QuizLand.Enum.Difficulty;
+import com.Dijkstra.QuizLand.Model.Option;
+import com.Dijkstra.QuizLand.Model.Question;
 import lombok.Getter;
 import java.util.List;
 import java.util.Set;
@@ -21,7 +22,7 @@ public class QuestionReadDTO{
     private final Difficulty difficulty;
     private final boolean active;
 
-    QuestionReadDTO(Question questionSource){
+    public QuestionReadDTO(Question questionSource){
         this.id = questionSource.getId();
         this.questionContent = questionSource.getQuestionContent();
         this.options = questionSource

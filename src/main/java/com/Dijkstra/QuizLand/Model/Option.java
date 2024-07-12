@@ -1,7 +1,6 @@
-package com.Dijkstra.QuizLand.Question.Option;
+package com.Dijkstra.QuizLand.Model;
 
-import com.Dijkstra.QuizLand.Audit;
-import com.Dijkstra.QuizLand.Question.Question;
+import com.Dijkstra.QuizLand.Component.Audit;
 import jakarta.persistence.*;
 import lombok.*;
 

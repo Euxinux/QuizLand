@@ -1,4 +1,4 @@
-package com.Dijkstra.QuizLand.Question.Exception;
+package com.Dijkstra.QuizLand.Exception;
 
 /*
    This exception is used when application can't find particular option by id in the database.

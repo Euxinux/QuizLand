@@ -1,9 +1,9 @@
-package com.Dijkstra.QuizLand.Question;
+package com.Dijkstra.QuizLand.Model;
 
-import com.Dijkstra.QuizLand.Audit;
-import com.Dijkstra.QuizLand.Question.Enum.Category;
-import com.Dijkstra.QuizLand.Question.Enum.Difficulty;
-import com.Dijkstra.QuizLand.Question.Option.Option;
+import com.Dijkstra.QuizLand.Component.Audit;
+import com.Dijkstra.QuizLand.DTO.QuestionCreateDTO;
+import com.Dijkstra.QuizLand.Enum.Category;
+import com.Dijkstra.QuizLand.Enum.Difficulty;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -33,7 +33,7 @@ public class Question{
     @Embedded
     private final Audit audit = new Audit();
 
-    Question (QuestionCreateDTO questionFromUser){
+    public Question(QuestionCreateDTO questionFromUser){
         this.questionContent = questionFromUser.getQuestionContent();
         this.category = questionFromUser.getCategory();
         this.options = new HashSet<>();

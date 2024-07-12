@@ -1,4 +1,7 @@
-package com.Dijkstra.QuizLand.Question;
+package com.Dijkstra.QuizLand.Component;
+
+import com.Dijkstra.QuizLand.DTO.QuestionUpdateDTO;
+import com.Dijkstra.QuizLand.Model.Question;
 
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;

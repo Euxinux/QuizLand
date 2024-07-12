@@ -1,4 +1,4 @@
-package com.Dijkstra.QuizLand.Question.Exception;
+package com.Dijkstra.QuizLand.Exception;
 /*
     Exception thrown when user gives nonexistent question id.
  */

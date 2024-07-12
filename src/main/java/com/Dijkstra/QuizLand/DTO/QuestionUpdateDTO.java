@@ -1,7 +1,8 @@
-package com.Dijkstra.QuizLand.Question;
+package com.Dijkstra.QuizLand.DTO;
 
-import com.Dijkstra.QuizLand.Question.Enum.Category;
-import com.Dijkstra.QuizLand.Question.Enum.Difficulty;
+import com.Dijkstra.QuizLand.Enum.Category;
+import com.Dijkstra.QuizLand.Enum.Difficulty;
+
 import jakarta.validation.constraints.NotBlank;
 
 import java.util.List;

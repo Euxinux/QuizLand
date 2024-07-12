@@ -1,5 +1,10 @@
-package com.Dijkstra.QuizLand.Question;
+package com.Dijkstra.QuizLand.Controller;
 
+import com.Dijkstra.QuizLand.DTO.QuestionCreateDTO;
+import com.Dijkstra.QuizLand.DTO.QuestionReadDTO;
+import com.Dijkstra.QuizLand.Model.Question;
+import com.Dijkstra.QuizLand.Service.QuestionService;
+import com.Dijkstra.QuizLand.DTO.QuestionUpdateDTO;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
